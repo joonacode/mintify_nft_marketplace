@@ -6,13 +6,28 @@ import {
   Heading,
   HStack,
   IconButton,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { MdListAlt, MdGridView } from 'react-icons/md';
-import { CardList } from '@/components';
+import { CardList, NftList } from '@/components';
+import { COLOR_THEME } from '@/theme';
 const Home = () => {
+  const bgTheme = useColorModeValue(
+    COLOR_THEME.primaryBlue,
+    COLOR_THEME.primaryGreen,
+  );
+  const colorTheme = useColorModeValue(
+    COLOR_THEME.primaryLight,
+    COLOR_THEME.primaryBlack,
+  );
+  const themeGreenBlue = useColorModeValue(
+    COLOR_THEME.primaryBlack,
+    COLOR_THEME.primaryGreen,
+  );
+
   return (
     <>
       <DashboardLayout>
@@ -20,7 +35,7 @@ const Home = () => {
           <Heading as='h2' size={'lg'} fontWeight={'bold'}>
             Cryptographics
           </Heading>
-          <Button bg='#22B9CA' color={'white'}>
+          <Button bg={bgTheme} color={colorTheme}>
             Create new item
           </Button>
         </Flex>
@@ -31,6 +46,7 @@ const Home = () => {
                 as={Button}
                 fontWeight={'normal'}
                 rightIcon={<ChevronDownIcon />}
+                color={themeGreenBlue}
               >
                 Recent
               </MenuButton>
@@ -43,6 +59,7 @@ const Home = () => {
                 as={Button}
                 fontWeight={'normal'}
                 rightIcon={<ChevronDownIcon />}
+                color={themeGreenBlue}
               >
                 Low to hight
               </MenuButton>
@@ -55,6 +72,7 @@ const Home = () => {
                 as={Button}
                 fontWeight={'normal'}
                 rightIcon={<ChevronDownIcon />}
+                color={themeGreenBlue}
               >
                 All
               </MenuButton>
@@ -78,7 +96,7 @@ const Home = () => {
           </Flex>
         </Flex>
         <Box mt={5} mb={'100px'}>
-          <CardList />
+          <NftList />
         </Box>
       </DashboardLayout>
     </>

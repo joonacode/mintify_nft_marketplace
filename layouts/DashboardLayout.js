@@ -1,9 +1,15 @@
 import Sidebar from '@/components/Sidebar';
-import { Box, Flex } from '@chakra-ui/react';
+import { COLOR_THEME } from '@/theme';
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import { Navbar } from '../components';
 
 const DashboardLayout = ({ children }) => {
+  const bg = useColorModeValue(
+    COLOR_THEME.secondaryLight,
+    COLOR_THEME.secondaryDark,
+  );
+
   return (
     <Box>
       <Navbar />
@@ -16,7 +22,7 @@ const DashboardLayout = ({ children }) => {
           pt={'40px'}
           pos='relative'
           zIndex={1}
-          bg='#FCFCFC'
+          bg={bg}
         >
           {children}
         </Box>

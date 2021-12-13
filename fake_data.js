@@ -127,20 +127,4 @@ export const fake_list = [
     gender: 'Male',
     username: 'Cacatua tenuirostris',
   },
-  {
-    id: 17,
-    first_name: 'Romeo',
-    last_name: 'Yarrell',
-    email: 'ryarrellg@economist.com',
-    gender: 'Non-binary',
-    username: 'Epicrates cenchria maurus',
-  },
-  {
-    id: 18,
-    first_name: 'Catina',
-    last_name: 'Dodman',
-    email: 'cdodmanh@a8.net',
-    gender: 'Female',
-    username: 'Bison bison',
-  },
 ];

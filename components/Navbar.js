@@ -1,3 +1,4 @@
+import { COLOR_THEME } from '@/theme';
 import {
   Box,
   Container,
@@ -8,16 +9,43 @@ import {
   InputGroup,
   InputLeftElement,
   Text,
+  useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
+import { ButtonTheme } from '.';
 import Logo from './Logo';
 
 const Navbar = () => {
+  const bg = useColorModeValue('#fff', COLOR_THEME.primaryDark);
+  const bgInput = useColorModeValue('#F2F2F2', COLOR_THEME.primaryGray);
+  const colorActive = useColorModeValue(
+    COLOR_THEME.primaryBlue,
+    COLOR_THEME.primaryGreen,
+  );
+
+  const { colorMode } = useColorMode();
+
+  const listMenu = [
+    {
+      name: 'Dashboard',
+      isActive: true,
+    },
+    {
+      name: 'About Us',
+      isActive: false,
+    },
+    {
+      name: 'FAQ',
+      isActive: false,
+    },
+  ];
+
   return (
     <Box
       zIndex={10}
-      background={'#fff'}
+      background={bg}
       pos='sticky'
       top={0}
       py={4}
@@ -35,19 +63,31 @@ const Navbar = () => {
             flex={1}
           >
             <HStack spacing={'25px'}>
-              {/* #22B9CA */}
-              <Box pos='relative'>
-                <Text fontSize={'md'}>Dashboard</Text>
-                <Box
-                  w='56px'
-                  h={'4px'}
-                  background={'#22B9CA'}
-                  pos='absolute'
-                  bottom={'-25px'}
-                ></Box>
-              </Box>
-              <Text fontSize={'md'}>About Us</Text>
-              <Text fontSize={'md'}>FAQ</Text>
+              {listMenu.map((item, i) => (
+                <Box pos='relative' cursor={'pointer'} key={i}>
+                  <Text
+                    color={
+                      item.isActive && colorMode === 'dark'
+                        ? colorActive
+                        : colorMode === 'dark'
+                        ? '#fff'
+                        : '#333333'
+                    }
+                    fontSize={'md'}
+                  >
+                    {item.name}
+                  </Text>
+                  {item.isActive && (
+                    <Box
+                      w='56px'
+                      h={'4px'}
+                      background={colorActive}
+                      pos='absolute'
+                      bottom={'-25px'}
+                    ></Box>
+                  )}
+                </Box>
+              ))}
             </HStack>
             <Flex alignItems={'center'}>
               <InputGroup mr={7} w={'300px'}>
@@ -66,13 +106,14 @@ const Navbar = () => {
                 <Input
                   pl={'50px'}
                   border={'none'}
-                  background={'#F2F2F2'}
+                  background={bgInput}
                   rounded={'xl'}
                   type='text'
                   placeholder='Search artwork'
                 />
               </InputGroup>
               <HStack spacing={'15px'}>
+                <ButtonTheme />
                 <IconButton
                   aria-label='message'
                   rounded='full'
@@ -80,7 +121,9 @@ const Navbar = () => {
                     <Image
                       width={20}
                       height={20}
-                      src='/icons/message.svg'
+                      src={`/icons/message${
+                        colorMode === 'dark' ? '_light' : ''
+                      }.svg`}
                       alt='message'
                     />
                   }
@@ -92,7 +135,9 @@ const Navbar = () => {
                     <Image
                       width={20}
                       height={20}
-                      src='/icons/notification.svg'
+                      src={`/icons/notification${
+                        colorMode === 'dark' ? '_light' : ''
+                      }.svg`}
                       alt='notification'
                     />
                   }
@@ -104,7 +149,9 @@ const Navbar = () => {
                     <Image
                       width={20}
                       height={20}
-                      src='/icons/wallet.svg'
+                      src={`/icons/wallet${
+                        colorMode === 'dark' ? '_light' : ''
+                      }.svg`}
                       alt='wallet'
                     />
                   }
