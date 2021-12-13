@@ -7,9 +7,23 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+} from '@chakra-ui/react';
 import { COLOR_THEME } from '@/theme';
-const Sidebar = () => {
+import { ButtonTheme } from '.';
+import useWindowSize from '@/hooks/useWindowsize';
+import Logo from './Logo';
+const Sidebar = ({ statusSidebar, toggleSidebar }) => {
   const bg = useColorModeValue('#fff', COLOR_THEME.primaryDark);
+  const borderColor = useColorModeValue('#fff', COLOR_THEME.primaryGray);
+  const { width } = useWindowSize();
 
   const listMenu = [
     {
@@ -98,21 +112,8 @@ const Sidebar = () => {
     },
   ];
 
-  return (
-    <Box
-      position={'fixed'}
-      left={0}
-      zIndex={2}
-      background={bg}
-      pl={'30px'}
-      minH='90vh'
-      maxH='100vh'
-      h='full'
-      pr={'25px'}
-      pt={'50px'}
-      w={'290px'}
-      boxShadow={'0px 2px 4px rgba(0, 0, 0, 0.12)'}
-    >
+  const SidebarContent = () => (
+    <>
       <Accordion allowToggle>
         {listMenu.map((menu, i) => (
           <AccordionItem borderTop={i === 0 && 'none'} key={i}>
@@ -141,7 +142,50 @@ const Sidebar = () => {
           </AccordionItem>
         ))}
       </Accordion>
-    </Box>
+    </>
+  );
+
+  if (width > 768) {
+    return (
+      <Box
+        position={'fixed'}
+        left={0}
+        zIndex={2}
+        pb={'50px'}
+        background={bg}
+        pl={'30px'}
+        minH='90vh'
+        maxH='93vh'
+        h='full'
+        pr={'25px'}
+        pt={'50px'}
+        w={'290px'}
+        boxShadow={'0px 2px 4px rgba(0, 0, 0, 0.12)'}
+        display={'flex'}
+        flexDir={'column'}
+        justifyContent={'space-between'}
+        borderRight={`1px solid ${borderColor}`}
+      >
+        {<SidebarContent />}
+        <ButtonTheme />
+      </Box>
+    );
+  }
+
+  return (
+    <Drawer isOpen={statusSidebar} placement='left' onClose={toggleSidebar}>
+      <DrawerOverlay />
+      <DrawerContent bg={bg} borderRight={`1px solid ${borderColor}`}>
+        <DrawerCloseButton />
+        <DrawerHeader>
+          <Logo />
+        </DrawerHeader>
+        <DrawerBody>{<SidebarContent />}</DrawerBody>
+        <DrawerFooter>
+          <ButtonTheme />
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 };
 

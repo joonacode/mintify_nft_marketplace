@@ -1,8 +1,9 @@
 import Sidebar from '@/components/Sidebar';
+import useWindowSize from '@/hooks/useWindowsize';
 import { COLOR_THEME } from '@/theme';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
-import { Navbar } from '../components';
+import React, { useState } from 'react';
+import { Footer, Navbar } from '../components';
 
 const DashboardLayout = ({ children }) => {
   const bg = useColorModeValue(
@@ -10,21 +11,27 @@ const DashboardLayout = ({ children }) => {
     COLOR_THEME.secondaryDark,
   );
 
+  const { width } = useWindowSize();
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => setShowSidebar(!showSidebar);
+
   return (
     <Box>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
       <Flex>
-        <Sidebar />
+        <Sidebar statusSidebar={showSidebar} toggleSidebar={toggleSidebar} />
         <Box
-          ml='290px'
+          ml={width > 768 ? '290px' : '0px'}
           flex='1'
-          px={6}
           pt={'40px'}
           pos='relative'
           zIndex={1}
           bg={bg}
         >
-          {children}
+          <Box px={{ base: 3, md: 6 }}>{children}</Box>
+          <Footer />
         </Box>
       </Flex>
     </Box>

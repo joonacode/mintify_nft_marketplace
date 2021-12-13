@@ -12,7 +12,7 @@ import React from 'react';
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { MdListAlt, MdGridView } from 'react-icons/md';
-import { CardList, NftList } from '@/components';
+import { NftList } from '@/components';
 import { COLOR_THEME } from '@/theme';
 const Home = () => {
   const bgTheme = useColorModeValue(
@@ -39,8 +39,13 @@ const Home = () => {
             Create new item
           </Button>
         </Flex>
-        <Flex mt={7} justifyContent={'space-between'} alignItems={'center'}>
-          <HStack spacing={'10px'}>
+        <Flex
+          wrap={'wrap'}
+          mt={6}
+          justifyContent={'space-between'}
+          alignItems={'center'}
+        >
+          <HStack mt={2} spacing={'10px'}>
             <Menu>
               <MenuButton
                 as={Button}
@@ -81,7 +86,7 @@ const Home = () => {
               </MenuList>
             </Menu>
           </HStack>
-          <Flex>
+          <Flex mt={2} ml={'auto'}>
             <IconButton
               opacity={'0.3'}
               roundedRight={0}
@@ -95,7 +100,7 @@ const Home = () => {
             />
           </Flex>
         </Flex>
-        <Box mt={5} mb={'100px'}>
+        <Box mt={5} mb={'50px'}>
           <NftList />
         </Box>
       </DashboardLayout>

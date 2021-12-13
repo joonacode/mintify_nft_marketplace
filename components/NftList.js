@@ -28,7 +28,7 @@ const NftList = () => {
   return (
     <>
       <Box bg={bg} padding={'14px'} rounded='lg'>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
+        <SimpleGrid columns={{ base: 1, sm: 2, lg: 3, xl: 4 }} spacing={6}>
           {fake_list.map((data, i) => (
             <CardItem data={data} key={i} />
           ))}
