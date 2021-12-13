@@ -24,7 +24,7 @@ import {
   MenuDivider,
 } from '@chakra-ui/react';
 import Logo from './Logo';
-import useWindowSize from '@/hooks/useWindowsize';
+import { useWindowSize } from '@/hooks';
 
 const Navbar = ({ toggleSidebar }) => {
   const bg = useColorModeValue('#fff', COLOR_THEME.primaryDark);

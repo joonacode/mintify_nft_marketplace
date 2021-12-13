@@ -18,8 +18,8 @@ import {
 } from '@chakra-ui/react';
 import { COLOR_THEME } from '@/theme';
 import { ButtonTheme } from '.';
-import useWindowSize from '@/hooks/useWindowsize';
 import Logo from './Logo';
+import { useWindowSize } from '@/hooks';
 const Sidebar = ({ statusSidebar, toggleSidebar }) => {
   const bg = useColorModeValue('#fff', COLOR_THEME.primaryDark);
   const borderColor = useColorModeValue('#fff', COLOR_THEME.primaryGray);

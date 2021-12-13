@@ -1,5 +1,5 @@
 import Sidebar from '@/components/Sidebar';
-import useWindowSize from '@/hooks/useWindowsize';
+import { useWindowSize } from '@/hooks';
 import { COLOR_THEME } from '@/theme';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
