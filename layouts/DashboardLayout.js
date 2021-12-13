@@ -18,23 +18,25 @@ const DashboardLayout = ({ children }) => {
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
   return (
-    <Box>
-      <Navbar toggleSidebar={toggleSidebar} />
-      <Flex>
-        <Sidebar statusSidebar={showSidebar} toggleSidebar={toggleSidebar} />
-        <Box
-          ml={width > 768 ? '290px' : '0px'}
-          flex='1'
-          pt={'40px'}
-          pos='relative'
-          zIndex={1}
-          bg={bg}
-        >
-          <Box px={{ base: 3, md: 6 }}>{children}</Box>
-          <Footer />
-        </Box>
-      </Flex>
-    </Box>
+    <>
+      <Box>
+        <Navbar toggleSidebar={toggleSidebar} />
+        <Flex>
+          <Sidebar statusSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+          <Box
+            ml={width > 768 ? '290px' : '0px'}
+            flex='1'
+            pt={'40px'}
+            pos='relative'
+            zIndex={1}
+            bg={bg}
+          >
+            <Box px={{ base: 3, md: 6 }}>{children}</Box>
+            <Footer />
+          </Box>
+        </Flex>
+      </Box>
+    </>
   );
 };
 
