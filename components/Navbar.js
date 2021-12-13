@@ -70,7 +70,7 @@ const Navbar = ({ toggleSidebar }) => {
           alignItems={'center'}
           justifyContent={{ base: 'space-between', md: 'flex-start' }}
         >
-          {width >= 768 ? (
+          {width > 768 ? (
             <Box w={320}>
               <Logo />
             </Box>
@@ -91,7 +91,7 @@ const Navbar = ({ toggleSidebar }) => {
             w={'full'}
             className='hide_scroll'
           >
-            {width >= 768 && (
+            {width > 768 && (
               <HStack mr={10} spacing={'25px'}>
                 {listMenu.map((item, i) => (
                   <Box
@@ -127,7 +127,7 @@ const Navbar = ({ toggleSidebar }) => {
             )}
 
             <Flex alignItems={'center'}>
-              {width >= 768 && (
+              {width > 768 && (
                 <InputGroup mr={7} w={'300px'}>
                   <InputLeftElement
                     pl={'20px'}
@@ -222,7 +222,7 @@ const Navbar = ({ toggleSidebar }) => {
                         height={36}
                       />
                     </Box>
-                    {width >= 768 && <Text ml={3}>Leslie Alexander</Text>}
+                    {width > 768 && <Text ml={3}>Leslie Alexander</Text>}
                   </Flex>
                 </MenuButton>
                 {dropdownProfile && (

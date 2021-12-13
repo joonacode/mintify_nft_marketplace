@@ -158,7 +158,7 @@ const Sidebar = ({ statusSidebar, toggleSidebar }) => {
         maxH='93vh'
         h='full'
         pr={'25px'}
-        pt={'50px'}
+        pt={'30px'}
         w={'290px'}
         boxShadow={'0px 2px 4px rgba(0, 0, 0, 0.12)'}
         display={'flex'}
